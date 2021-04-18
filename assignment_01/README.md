@@ -64,9 +64,19 @@ The workspace contains two folders by default, where:
 |demo04|- private String appName;<br/>- private String port;|- Được đánh dấu giá trị với spring.application.name<br/>- Được đánh dấu giá trị với server.port|
 |demo05|||
 
+## Hiểu về dependency injection - demo07
+![diagram-di-demo](out/assignment_01/di-demo/di-demo.png)
+
 ## Bài tập 01 - Car Dealer hiển thị danh sách xe
 ![car-dealer](images/car-dealer.png)
 
-## Đọc dữ liệu từ CSV, hiển thị danh sách xe
+## Bài tập 03 - Đọc dữ liệu từ CSV, hiển thị danh sách xe
+`car.csv`
 
+``` csv
+1,Triton 4x4 Premium,Mitsubishi,865
+2,Suzuki Ertiga,Suzuki,570
+3,Honda CRV,Honda,1300
+4,Fadil,Vinfast,450
+```
 ![](images/csv.png)
