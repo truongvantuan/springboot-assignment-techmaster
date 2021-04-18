@@ -1,0 +1,50 @@
+@startuml di-demo
+
+
+
+package "consumer" {
+    Consumerable <|--- DIClient
+}
+
+package "service" {
+    MessageService <|--- EmailServiceImpl
+    MessageService <|--- SMSServiceImpl
+    MessageService "1" --- "1" DIClient
+}
+interface MessageService {
+    senMessage(msg: String, rec: String): void
+}
+class EmailServiceImpl {
+    +sendMessage(msg: String, rec: String): void
+}
+class SMSServiceImpl {
+    +sendMessage(msg: String, rec: String): void
+}
+
+package "injector" {
+    MessageServiceInjector <|--- EmailServiceInjector
+    MessageServiceInjector <|--- SMSServiceInjector
+}
+class SMSServiceInjector {
+    +getConsumer(): Consumerable
+}
+class EmailServiceInjector {
+    +getConsumer(): Consumerable
+}
+interface MessageServiceInjector {
+    +getConsumer(): Consumerable
+}
+
+interface Consumerable {
+    processMessages(msg: String, rec: String): void
+}
+class DIClient {
+    -service: MessageService
+    +DIClient()
+    +DIClient(svc: MessageService)
+    +setService(service: MessageService): void
+    +processMessages(msg: String, rec: String): void
+}
+
+
+@enduml

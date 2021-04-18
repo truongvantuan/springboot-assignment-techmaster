@@ -1,0 +1,21 @@
+@startuml without-di
+
+package "withoutdi" #DDDDDD {
+    Client - EmailService
+    ClientTest - Client
+}
+
+class Client {
+    -email: EmailService
+    +processMessages(msg: String, rec: String): void
+}
+
+class EmailService {
+    +sendEmail(message: String, receiver: String): void
+}
+
+class ClientTest {
+    +main(args: String[]): void
+}
+
+@enduml
