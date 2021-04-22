@@ -17,7 +17,7 @@ public class HomeController {
 
     @Value("${spring.application.name}")
     private String appName;
-    
+
     @GetMapping(value = "/")
     public String getcar(Model model) {
 
@@ -38,7 +38,7 @@ public class HomeController {
         ArrayList<Car> carList = new ArrayList<>();
 
         try (Scanner inputFile = new Scanner(Paths.get(fileName))) {
-            
+
             while (inputFile.hasNext()) {
                 String row = inputFile.nextLine();
                 String[] parts = row.split(",");

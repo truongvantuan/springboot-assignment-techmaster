@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ReadcsvApplication<readcsv>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "vn.techmaster.readcsv.ReadcsvApplication",
+            "projectName": "readcsv",
+            "args": ""
+        }
+    ]
+}
