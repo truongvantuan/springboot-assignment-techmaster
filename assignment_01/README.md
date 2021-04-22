@@ -2,6 +2,7 @@
 
 The workspace contains two folders by default, where:
 - `car-dealer`: bài 1 - hiển thị danh sách xe
+- `demo-annotation`: tạo @MyNumberAnnotaion
 - `readcsv`: bài 3 - đọc data từ csv, hiển thị danh sách
 - `out`: diagram hiểu về dependency injection
 - `src`: the folder to maintain sources
