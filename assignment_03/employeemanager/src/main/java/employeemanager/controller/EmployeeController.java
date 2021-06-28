@@ -2,14 +2,12 @@ package employeemanager.controller;
 
 import employeemanager.domain.Employee;
 import employeemanager.domain.EmployeeModelAssembler;
+import employeemanager.domain.EmployeePojo;
 import employeemanager.exception.ResourceNotFoundException;
 import employeemanager.repository.EmployeeRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,8 +30,10 @@ public class EmployeeController {
 
     @GetMapping(value = "/employees")
     public CollectionModel<EntityModel<Employee>> all() {
-        List<EntityModel<Employee>> employees = repository.findAll().stream()
-                .map(assembler::toModel).collect(Collectors.toList());
+        List<EntityModel<Employee>> employees = repository.findAll()
+                .stream()
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
         return CollectionModel.of(employees,
                 linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
     }
@@ -43,5 +43,15 @@ public class EmployeeController {
         Employee employee = repository.findById(employeeId).orElseThrow(() ->
                 new ResourceNotFoundException(employeeId));
         return assembler.toModel(employee);
+    }
+
+    @PostMapping(value = "employees")
+    public Employee newEmployee(@RequestBody EmployeePojo employee) {
+        Employee newEmployee = new Employee();
+        newEmployee.setFirstName(employee.getFirstName());
+        newEmployee.setLastName(employee.getLasName());
+        newEmployee.setEmail(employee.getEmail());
+        newEmployee.setPassportNumber(employee.getPassportNumber());
+        return repository.save(newEmployee);
     }
 }
