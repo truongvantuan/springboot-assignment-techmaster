@@ -20,20 +20,25 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     ResponseEntity<ErrorDetail> employeeNotFoundHandler(ResourceNotFoundException ex, WebRequest request) {
         List<String> detail = new ArrayList<>();
-        detail.add(ex.getLocalizedMessage());
-        ErrorDetail errorDetail = new ErrorDetail("Employee không tìm thấy!", detail);
-        return new ResponseEntity<>(errorDetail, HttpStatus.ACCEPTED);
+        String message = ex.getMessage();
+        detail.add(request.getDescription(true));
+        ErrorDetail errorDetail = new ErrorDetail(message, detail);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetail);
     }
 
-    @ResponseBody
-    @ExceptionHandler(Exception.class)
-    ResponseEntity<ErrorDetail> handleGlobalException(Exception ex, WebRequest request) {
-        List<String> detail = new ArrayList<>();
-        detail.add(ex.getLocalizedMessage());
-        ErrorDetail errorDetail = new ErrorDetail("Exception!", detail);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetail);
-    }
 
+    //
+//    @ResponseBody
+//    @ExceptionHandler(RuntimeException.class)
+//    ResponseEntity<ErrorDetail> handleGlobalException(RuntimeException ex, WebRequest request) {
+//        List<String> detail = Arrays.stream(ex.getStackTrace())
+//                .map(Objects::toString)
+//                .collect(Collectors.toList());
+////        detail.add(ex.getMessage());
+//        ErrorDetail errorDetail = new ErrorDetail("Exception!", detail);
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetail);
+//    }
+//
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return super.handleMethodArgumentNotValid(ex, headers, status, request);

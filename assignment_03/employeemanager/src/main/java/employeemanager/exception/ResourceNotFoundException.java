@@ -9,6 +9,6 @@ public class ResourceNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     public ResourceNotFoundException(Long id) {
-        super("Không tìm thấy Employee với id " + id);
+        super("Không tìm thấy Employee có id " + id);
     }
 }
