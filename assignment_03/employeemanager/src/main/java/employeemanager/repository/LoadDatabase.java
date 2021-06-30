@@ -22,6 +22,9 @@ public class LoadDatabase {
             log.info("Loading Database: "
                     + repository.save(new Employee("Laurette", "Tybalt",
                     "ltybalt0@stanford.edu", "987654321")));
+            log.info("Loading Database: "
+                    + repository.save(new Employee("Van Tuan", "Truong",
+                    "truongvantuan@outlook.com.vn", "123456789")));
         };
     }
 }

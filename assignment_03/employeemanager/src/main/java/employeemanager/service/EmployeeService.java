@@ -52,11 +52,22 @@ public class EmployeeService {
         }
     }
 
-    public List<Employee> findByName(String keyword) {
+    public List<Employee> findByEmail(String keyword) {
+        var email = keyword.toLowerCase();
+        if (keyword.isEmpty() || keyword.isBlank()) {
+            return repository.findAll();
+        }
         return repository.findAll().stream()
-                .filter(employee ->
-                        employee.getFirstName().contains(keyword) ||
-                                employee.getLastName().contains(keyword))
+                .filter(employee -> employee.getEmail().contains(email)
+                        || employee.getEmail().contains(email))
+                .collect(Collectors.toList());
+    }
+
+    public List<Employee> findByName(String keyword) {
+        String name = keyword.toLowerCase();
+        return repository.findAll().stream()
+                .filter(employee -> employee.getFirstName().toLowerCase().contains(name)
+                        || employee.getLastName().toLowerCase().contains(name))
                 .collect(Collectors.toList());
     }
 }
