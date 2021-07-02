@@ -34,11 +34,17 @@ public class EmployeeController {
         return "employee";
     }
 
-    @PostMapping(value = "/add")
+    @GetMapping(value = "/add")
     public String add(Model model) {
         model.addAttribute("employee", new Employee());
         return "create";
     }
+
+//    @PostMapping(value = "/create")
+//    public String create(Model model) {
+//        model.addAttribute("employee", new Employee());
+//        return "create";
+//    }
 
     @PostMapping(value = "/search")
     public String search(@ModelAttribute SearchRequest searchRequest, BindingResult result, Model model) {

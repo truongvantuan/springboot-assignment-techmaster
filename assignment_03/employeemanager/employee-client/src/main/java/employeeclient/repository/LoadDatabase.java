@@ -17,17 +17,17 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(EmployeeRepository repository) {
         return args -> {
             log.info("Loading Database: "
-                    + repository.save(new Employee("Tuan", "Truong",
+                    + repository.save(new Employee("Van Tuan", "Truong",
                     "truongvantuan@outlook.com.vn", "123456789")));
             log.info("Loading Database: "
                     + repository.save(new Employee("Laurette", "Tybalt",
                     "ltybalt0@stanford.edu", "987654321")));
             log.info("Loading Database: "
-                    + repository.save(new Employee("Van Tuan", "Truong",
-                    "truongvantuan@outlook.com.vn", "123456789")));
+                    + repository.save(new Employee("Nghe Muu", "Truong",
+                    "nghemuu@china.com.vn", "793847555")));
             log.info("Loading Database: "
                     + repository.save(new Employee("Tyson", "Haldon",
-                    "thaldon0@economist.com", "4hWo8qOhHwC")));
+                    "thaldon0@economist.com", "457568567")));
         };
     }
 }
