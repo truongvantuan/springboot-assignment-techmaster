@@ -11,17 +11,19 @@
 <body>
     <div th:fragment="create-new-employee" style="max-width: 600px; margin: auto">
         <div class="input-group row g-3">
-            <div class="col">
+            <label for="name">Provide name</label>
+            <div class="col" id="name">
                 <input type="text" class="form-control" placeholder="First name" aria-label="First name">
             </div>
             <div class="col">
                 <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
             </div>
-            <label for="inputGroupFile02">Upload profile image</label>
+            <div class="col">
+                <input id="email" type="text" class="form-control" placeholder="Email" aria-label="Email">
+            </div>
+            <label for="inputGroupFile02">Choose profile image</label>
             <input type="file" class="form-control" id="inputGroupFile02">
-            <label class="input-group-text" for="inputGroupFile02">Upload</label>
         </div>
     </div>
-
 </body>
 </html>

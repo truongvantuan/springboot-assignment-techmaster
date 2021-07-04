@@ -13,7 +13,7 @@
     <table class="table mdd">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Passport ID</th>
@@ -30,8 +30,10 @@
             <td th:text="${employee.getEmail()}"></td>
             <td>
                 <a th:href="@{/employees/{id}(id=${employee.id})}"><i style="margin-right: 12px" class="far fa-eye"></i></a>
-                <i style="margin-right: 12px" class="fas fa-user-edit"></i>
-                <i style="margin-right: 12px" class="fas fa-user-slash"></i></td>
+                <i th:href="@{/employees/}" style="margin-right: 12px" class="fas fa-user-edit"></i>
+                <a th:href="@{/employees/delete/{id}(id=${employee.id})}"><i style="margin-right: 12px"
+                                                                             class="fas fa-user-slash"></i></a>
+            </td>
         </tr>
         </tbody>
     </table>

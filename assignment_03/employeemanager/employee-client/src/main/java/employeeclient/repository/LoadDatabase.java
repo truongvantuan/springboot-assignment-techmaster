@@ -1,7 +1,7 @@
 package employeeclient.repository;
 
 
-import employeeclient.domain.Employee;
+import employeeclient.dto.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

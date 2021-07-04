@@ -1,7 +1,8 @@
 package employeeclient.service;
 
-import employeeclient.domain.Employee;
-import employeeclient.domain.EmployeeDto;
+import employeeclient.dto.mapper.EmployeeMapper;
+import employeeclient.dto.model.Employee;
+import employeeclient.dto.model.EmployeeDto;
 import employeeclient.exception.ResourceNotFoundException;
 import employeeclient.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
@@ -10,12 +11,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class EmployeeService implements iEmployeeService{
+public class EmployeeServiceImpl implements iEmployeeService {
 
     private EmployeeRepository repository;
 
-    EmployeeService(EmployeeRepository repository) {
+    private EmployeeMapper mapper;
+
+    EmployeeServiceImpl(EmployeeRepository repository, EmployeeMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     public List<Employee> getAllEmployee() {
@@ -27,9 +31,9 @@ public class EmployeeService implements iEmployeeService{
                 () -> new ResourceNotFoundException(employeeId));
     }
 
-    public Employee saveEmployee(EmployeeDto employeeDto) {
-        Employee newEmployee = EmployeeDto.mapDtoToObject(employeeDto);
-        return repository.save(newEmployee);
+    @Override
+    public Employee saveEmployee(Employee employee) {
+        return repository.save(employee);
     }
 
     public void deleteEmployee(Long employeeId) {
@@ -41,15 +45,9 @@ public class EmployeeService implements iEmployeeService{
         }
     }
 
-    public void updateEmployee(EmployeeDto employeeDto, Long employeeId) {
-        Employee employee = EmployeeDto.mapDtoToObject(employeeDto);
-        employee.setId(employeeId);
-        var newEmployee = repository.findById(employeeId);
-        if (newEmployee.isPresent()) {
-            repository.save(employee);
-        } else {
-            throw new ResourceNotFoundException(employeeId);
-        }
+    @Override
+    public void updateEmployee(Employee employee, Long employeeId) {
+
     }
 
     public List<Employee> findByEmail(String keyword) {

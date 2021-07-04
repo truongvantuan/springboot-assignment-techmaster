@@ -1,4 +1,4 @@
-package employeeclient.domain;
+package employeeclient.dto.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

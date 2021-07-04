@@ -1,7 +1,8 @@
 package employeeclient.controller;
 
-import employeeclient.domain.Employee;
-import employeeclient.service.EmployeeService;
+import employeeclient.dto.model.Employee;
+import employeeclient.dto.model.EmployeeDto;
+import employeeclient.service.EmployeeServiceImpl;
 import employeeclient.service.SearchRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/employees")
 public class EmployeeController {
 
-    private EmployeeService service;
+    private EmployeeServiceImpl service;
 
-    public EmployeeController(EmployeeService service) {
+    public EmployeeController(EmployeeServiceImpl service) {
         this.service = service;
     }
 
@@ -24,7 +25,7 @@ public class EmployeeController {
         var searchRequest = new SearchRequest();
         model.addAttribute("employees", employeeList);
         model.addAttribute("searchRequest", searchRequest);
-        return "index";
+        return "employee-list";
     }
 
     @GetMapping(value = "/{id}")
@@ -37,20 +38,29 @@ public class EmployeeController {
     @GetMapping(value = "/add")
     public String add(Model model) {
         model.addAttribute("employee", new Employee());
-        return "create";
+        return "create2";
     }
-
-//    @PostMapping(value = "/create")
-//    public String create(Model model) {
-//        model.addAttribute("employee", new Employee());
-//        return "create";
-//    }
 
     @PostMapping(value = "/search")
     public String search(@ModelAttribute SearchRequest searchRequest, BindingResult result, Model model) {
         var employee = service.findByName(searchRequest.getKeyword());
         model.addAttribute("employees", employee);
-        return "index";
+        return "employee-list";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable(name = "id") Long employeeId) {
+        service.deleteEmployee(employeeId);
+        return "redirect:/employees";
+    }
+
+    @PostMapping(value = "/save")
+    public String save(Employee employee, BindingResult result) {
+        if (result.hasErrors()) {
+            return "create";
+        }
+        service.saveEmployee(employee);
+        return "redirect:/employees";
     }
 }
 

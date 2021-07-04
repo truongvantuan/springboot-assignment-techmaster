@@ -1,7 +1,6 @@
 package employeeclient.service;
 
-import employeeclient.domain.Employee;
-import employeeclient.domain.EmployeeDto;
+import employeeclient.dto.model.Employee;
 
 import java.util.List;
 
@@ -11,11 +10,11 @@ public interface iEmployeeService {
 
     Employee getEmployeeById(Long employeeId);
 
-    Employee saveEmployee(EmployeeDto employeeDto);
+    Employee saveEmployee(Employee employee);
 
     void deleteEmployee(Long employeeId);
 
-    void updateEmployee(EmployeeDto employeeDto, Long employeeId);
+    void updateEmployee(Employee employee, Long employeeId);
 
     List<Employee> findByEmail(String keyword);
 

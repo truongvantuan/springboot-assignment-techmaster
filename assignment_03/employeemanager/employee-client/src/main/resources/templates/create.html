@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>$Title$</title>
-    <th:block th:insert="~{index :: head/link}"></th:block>
+    <th:block th:insert="~{employee-list :: head/link}"></th:block>
 </head>
 <body>
-    <div th:replace="~{fragments/form :: create-new-employee}"></div>
+    <form action="#" th:action="@{/employees/save}" th:object="${employee}" method="post">
+        <div style="max-width: 600px; margin: auto">
+            <div class="input-group row g-3">
+                <label for="name">Provide name</label>
+                <div class="col" id="name">
+                    <input type="text" class="form-control" placeholder="First name" aria-label="First name"
+                           th:field="*{firstName}">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
+                           th:field="*{lastName}">
+                </div>
+                <div class="col">
+                    <input id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"
+                           th:field="*{email}">
+                </div>
+                <label for="inputGroupFile02">Choose profile image</label>
+                <input type="file" class="form-control" id="inputGroupFile02">
+            </div>
+            <button class="btn btn-outline-success" type="submit">Save</button>
+        </div>
+    </form>
 </body>
 </html>
