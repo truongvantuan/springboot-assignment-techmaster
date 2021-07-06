@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 @Data
 @Entity
@@ -34,6 +32,7 @@ public class Employee {
 
     private String profileImg;
 
+    @NotEmpty(message = "Passport Number must not be empty!")
     private String passportNumber;
 
     public Employee(String firstName, String lastName, String email, String passportNumber) {

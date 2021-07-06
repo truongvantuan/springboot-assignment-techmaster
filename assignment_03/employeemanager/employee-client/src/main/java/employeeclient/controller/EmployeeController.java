@@ -1,14 +1,17 @@
 package employeeclient.controller;
 
 import employeeclient.dto.model.Employee;
-import employeeclient.dto.model.EmployeeDto;
 import employeeclient.service.EmployeeServiceImpl;
 import employeeclient.service.SearchRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
+@Slf4j
 @Controller
 @RequestMapping(value = "/employees")
 public class EmployeeController {
@@ -41,6 +44,15 @@ public class EmployeeController {
         return "create2";
     }
 
+    @PostMapping(value = "/save")
+    public String save(@Valid Employee employee, BindingResult result) {
+        if (result.hasErrors()) {
+            return "create2";
+        }
+        service.saveEmployee(employee);
+        return "redirect:/employees";
+    }
+
     @PostMapping(value = "/search")
     public String search(@ModelAttribute SearchRequest searchRequest, BindingResult result, Model model) {
         var employee = service.findByName(searchRequest.getKeyword());
@@ -51,15 +63,6 @@ public class EmployeeController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable(name = "id") Long employeeId) {
         service.deleteEmployee(employeeId);
-        return "redirect:/employees";
-    }
-
-    @PostMapping(value = "/save")
-    public String save(Employee employee, BindingResult result) {
-        if (result.hasErrors()) {
-            return "create";
-        }
-        service.saveEmployee(employee);
         return "redirect:/employees";
     }
 }

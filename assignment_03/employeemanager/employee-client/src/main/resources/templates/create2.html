@@ -13,23 +13,26 @@
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="first-name">First name</label>
-                        <input type="text" id="first-name" class="form-control" th:field="*{firstName}"/>
+                        <input type="text" id="first-name" class="form-control is-valid" th:field="*{firstName}"/>
+                        <span class="validationError invalid-feedback"
+                              th:if="${#fields.hasErrors('firstName')}"
+                              th:errors="*{firstName}">Invalidate field!</span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="last-name">Last name</label>
-                        <input type="text" id="last-name" class="form-control" th:field="*{lastName}"/>
+                        <input type="text" id="last-name" class="form-control is-valid" th:field="*{lastName}"/>
                     </div>
                 </div>
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="email-field">Email address</label>
-                <input type="email" id="email-field" class="form-control" th:field="*{email}"/>
+                <input type="email" id="email-field" class="form-control is-valid" th:field="*{email}"/>
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="passport-id">Passport ID</label>
-                <input type="text" id="passport-id" class="form-control"th:field="*{passportNumber}"/>
+                <input type="text" id="passport-id" class="form-control is-valid" th:field="*{passportNumber}"/>
             </div>
             <button class="btn btn-outline-success" type="submit">Save</button>
         </div>
