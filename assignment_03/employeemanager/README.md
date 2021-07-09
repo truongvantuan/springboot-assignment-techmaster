@@ -142,11 +142,14 @@ Chạy ứng dụng bằng command line như sau:
    Ứng dụng chạy tại [http://localhost:8080/employees](http://localhost:8080/employees)
    
 - Danh sách employees:
-  ![list-employees](etc/image/p1.png)
+  
+![list-employees](etc/image/p1.png)
   
 - Thêm mới:
-  ![add-employee](etc/image/p2.png)
+  
+![add-employee](etc/image/p2.png)
   
 - Tìm kiếm với từ khóa ```tuan```
-  ![search-employees](etc/image/p3.png)
+  
+![search-employees](etc/image/p3.png)
   
