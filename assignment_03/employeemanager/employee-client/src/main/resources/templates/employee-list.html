@@ -9,7 +9,7 @@
     <link th:href="@{/styles/main.css}" rel="stylesheet"/>
 </head>
 <body>
-    <div th:replace="~{fragments/header :: nabvbar}"></div>
+    <div th:replace="~{fragments/header :: navbar}"></div>
     <table class="table mdd">
         <thead>
         <tr>
@@ -30,7 +30,8 @@
             <td th:text="${employee.getEmail()}"></td>
             <td>
                 <a th:href="@{/employees/{id}(id=${employee.id})}"><i style="margin-right: 12px" class="far fa-eye"></i></a>
-                <i th:href="@{/employees/}" style="margin-right: 12px" class="fas fa-user-edit"></i>
+                <a th:href="@{/employees/edit/{id}(id=${employee.id})}"><i style="margin-right: 12px"
+                                                                           class="fas fa-user-edit"></i></a>
                 <a th:href="@{/employees/delete/{id}(id=${employee.id})}"><i style="margin-right: 12px"
                                                                              class="fas fa-user-slash"></i></a>
             </td>

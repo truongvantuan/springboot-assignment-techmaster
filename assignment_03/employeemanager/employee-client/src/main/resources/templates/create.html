@@ -4,26 +4,52 @@
     <meta charset="UTF-8">
     <title>$Title$</title>
     <th:block th:insert="~{employee-list :: head/link}"></th:block>
+    <style>
+        .validationError {
+            color: #ff7a6a;
+        }
+        .head {
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
     <form action="#" th:action="@{/employees/save}" th:object="${employee}" method="post">
         <div style="max-width: 600px; margin: auto">
-            <div class="input-group row g-3">
-                <label for="name">Provide name</label>
-                <div class="col" id="name">
-                    <input type="text" class="form-control" placeholder="First name" aria-label="First name"
-                           th:field="*{firstName}">
+            <h5 class="head">Add new employee</h5>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="first-name">First name</label>
+                        <input type="text" id="first-name" class="form-control" th:field="*{firstName}"/>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('firstName')}"
+                              th:errors="*{firstName}"></span>
+                    </div>
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
-                           th:field="*{lastName}">
+                    <div class="form-outline">
+                        <label class="form-label" for="last-name">Last name</label>
+                        <input type="text" id="last-name" class="form-control" th:field="*{lastName}"/>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('lastName')}"
+                              th:errors="*{lastName}"></span>
+                    </div>
                 </div>
-                <div class="col">
-                    <input id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"
-                           th:field="*{email}">
-                </div>
-                <label for="inputGroupFile02">Choose profile image</label>
-                <input type="file" class="form-control" id="inputGroupFile02">
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="email-field">Email address</label>
+                <input type="email" id="email-field" class="form-control" th:field="*{email}"/>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('email')}"
+                      th:errors="*{email}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="passport-id">Passport ID</label>
+                <input type="text" id="passport-id" class="form-control" th:field="*{passportNumber}"/>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('passportNumber')}"
+                      th:errors="*{passportNumber}"></span>
             </div>
             <button class="btn btn-outline-success" type="submit">Save</button>
         </div>

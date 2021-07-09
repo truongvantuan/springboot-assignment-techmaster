@@ -2,7 +2,6 @@ package employeeclient.service;
 
 import employeeclient.dto.mapper.EmployeeMapper;
 import employeeclient.dto.model.Employee;
-import employeeclient.dto.model.EmployeeDto;
 import employeeclient.exception.ResourceNotFoundException;
 import employeeclient.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
@@ -46,8 +45,12 @@ public class EmployeeServiceImpl implements iEmployeeService {
     }
 
     @Override
-    public void updateEmployee(Employee employee, Long employeeId) {
-
+    public void updateEmployee(Employee employee) {
+        var updatedEmployee = getEmployeeById(employee.getId());
+        updatedEmployee.setFirstName(employee.getFirstName())
+                .setLastName(employee.getLastName())
+                .setEmail(employee.getEmail())
+                .setPassportNumber(employee.getPassportNumber());
     }
 
     public List<Employee> findByEmail(String keyword) {

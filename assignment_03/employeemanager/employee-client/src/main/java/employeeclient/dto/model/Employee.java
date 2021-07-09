@@ -3,6 +3,7 @@ package employeeclient.dto.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.validation.constraints.*;
 @Data
 @Entity
 @NoArgsConstructor
+@Accessors(chain = true)
 @AllArgsConstructor
 public class Employee {
 
@@ -30,9 +32,9 @@ public class Employee {
     @Email(message = "Email must be a valid email address")
     private String email;
 
-    private String profileImg;
+    private String photoUrls;
 
-    @NotEmpty(message = "Passport Number must not be empty!")
+    @NotEmpty(message = "Please provide a valid Passport Number")
     private String passportNumber;
 
     public Employee(String firstName, String lastName, String email, String passportNumber) {
@@ -40,6 +42,10 @@ public class Employee {
         this.lastName = lastName;
         this.email = email;
         this.passportNumber = passportNumber;
+    }
+
+    public String getFullName() {
+        return firstName != null ? firstName.concat(" ").concat(lastName) : "";
     }
 
 }

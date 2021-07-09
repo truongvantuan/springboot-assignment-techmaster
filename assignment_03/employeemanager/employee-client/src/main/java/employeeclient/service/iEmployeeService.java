@@ -14,7 +14,7 @@ public interface iEmployeeService {
 
     void deleteEmployee(Long employeeId);
 
-    void updateEmployee(Employee employee, Long employeeId);
+    void updateEmployee(Employee employee);
 
     List<Employee> findByEmail(String keyword);
 

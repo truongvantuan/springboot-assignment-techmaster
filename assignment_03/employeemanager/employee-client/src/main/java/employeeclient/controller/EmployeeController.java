@@ -22,32 +22,45 @@ public class EmployeeController {
         this.service = service;
     }
 
+    /**
+     * Lấy toàn bộ danh sách emplpoyee.
+     * @param model
+     * @return đổ dữ liệu vào template employee-list
+     */
     @GetMapping()
     public String getAll(Model model) {
         var employeeList = service.getAllEmployee();
         var searchRequest = new SearchRequest();
         model.addAttribute("employees", employeeList);
-        model.addAttribute("searchRequest", searchRequest);
+        model.addAttribute("searchRequest", searchRequest); // show log in console
+        log.info("getAll() method invoked!");
         return "employee-list";
     }
 
+    /**
+     * Lấy về thông tin employee theo id truyền vào từ url path
+     * @param employeeId map từ id
+     * @param model
+     * @return
+     */
     @GetMapping(value = "/{id}")
     public String getOne(@PathVariable(name = "id") Long employeeId, Model model) {
-        Employee employee = service.getEmployeeById(employeeId);
+        var employee = service.getEmployeeById(employeeId);
         model.addAttribute("user", employee);
+        log.info("get employee name " + employee.getFullName());
         return "employee";
     }
 
     @GetMapping(value = "/add")
     public String add(Model model) {
         model.addAttribute("employee", new Employee());
-        return "create2";
+        return "create";
     }
 
     @PostMapping(value = "/save")
     public String save(@Valid Employee employee, BindingResult result) {
         if (result.hasErrors()) {
-            return "create2";
+            return "create";
         }
         service.saveEmployee(employee);
         return "redirect:/employees";
@@ -64,6 +77,15 @@ public class EmployeeController {
     public String delete(@PathVariable(name = "id") Long employeeId) {
         service.deleteEmployee(employeeId);
         return "redirect:/employees";
+    }
+
+    @GetMapping(value = "/edit/{id}")
+    public String editOne(@PathVariable("id") Long employeeId, Model model) {
+        var title = "Update information " + service.getEmployeeById(employeeId).getFullName();
+        var employee = service.getEmployeeById(employeeId);
+        model.addAttribute("title", title);
+        model.addAttribute("employee", employee);
+        return "edit";
     }
 }
 
