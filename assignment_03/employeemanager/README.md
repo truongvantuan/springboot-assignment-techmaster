@@ -22,7 +22,7 @@ Technology stack:
 ## Lấy về mã nguồn
 
 ```
-git clone https://github.com/truongvantuan/springboot-assignment-techmaster/tree/main/assignment_03/employeemanager
+https://downgit.github.io/#/home?url=https://github.com/truongvantuan/springboot-assignment-techmaster/tree/main/assignment_03/employeemanager
 ```
 
 ## Chạy ứng dụng
