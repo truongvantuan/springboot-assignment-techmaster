@@ -33,7 +33,7 @@ public class EmployeeController {
         var searchRequest = new SearchRequest();
         model.addAttribute("employees", employeeList);
         model.addAttribute("searchRequest", searchRequest); // show log in console
-        log.info("getAll() method invoked!");
+        log.info("getAll() đã được gọi >>");
         return "employee-list";
     }
 
