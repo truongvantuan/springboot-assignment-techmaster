@@ -5,28 +5,36 @@
     <title>$Title$</title>
 </head>
 <body>
-    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light hdd">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light hdd" th:fragment="navbar">
         <div class="container-fluid">
             <a class="navbar-brand" th:href="@{/employees/}">Employees</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler" data-bs-target="#navbarSupportedContent"
+                    data-bs-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a aria-current="page" class="nav-link active" href="#">Home</a>
                     </li>
                 </ul>
-                <form class="d-flex" action="#" th:action="@{/employees/search}" th:object="${searchRequest}"
-                      method="post">
-                    <input class="form-control me-2" th:field="*{keyword}" type="search" placeholder="Search"
-                           aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/employees?lang=en}" th:text="#{english}">English</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/employees?lang=vn}" th:text="#{vietnam}">Vietnamese</a>
+                    </li>
+                </ul>
+                <form action="#" class="d-flex" method="post" th:action="@{/employees/search}"
+                      th:object="${searchRequest}">
+                    <input aria-label="Search" class="form-control me-2" th:placeholder="#{look_up}" th:field="*{keyword}"
+                           type="search">
+                    <button class="btn btn-outline-success" type="submit" th:text="#{search}">Search</button>
                 </form>
                 <!--                <button class="btn btn-outline-success add-btn" >Add</button>-->
-                <a th:href="@{/employees/add}" class="btn btn-outline-success add-btn">Add</a>
+                <a class="btn btn-outline-success add-btn" th:href="@{/employees/add}" th:text="#{add}">Add</a>
             </div>
         </div>
     </nav>

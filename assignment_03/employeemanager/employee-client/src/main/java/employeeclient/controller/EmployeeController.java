@@ -23,7 +23,7 @@ public class EmployeeController {
     }
 
     /**
-     * Lấy toàn bộ danh sách emplpoyee.
+     * Lấy toàn bộ danh sách employee.
      * @param model
      * @return đổ dữ liệu vào template employee-list
      */
@@ -32,8 +32,8 @@ public class EmployeeController {
         var employeeList = service.getAllEmployee();
         var searchRequest = new SearchRequest();
         model.addAttribute("employees", employeeList);
-        model.addAttribute("searchRequest", searchRequest); // show log in console
-        log.info("getAll() đã được gọi >>");
+        model.addAttribute("searchRequest", searchRequest);
+        log.info("getAll() đã được gọi >>>"); // show log in console
         return "employee-list";
     }
 
@@ -68,8 +68,8 @@ public class EmployeeController {
 
     @PostMapping(value = "/search")
     public String search(@ModelAttribute SearchRequest searchRequest, BindingResult result, Model model) {
-        var employee = service.findByName(searchRequest.getKeyword());
-        model.addAttribute("employees", employee);
+        var employees = service.findByName(searchRequest.getKeyword());
+        model.addAttribute("employees", employees);
         return "employee-list";
     }
 
