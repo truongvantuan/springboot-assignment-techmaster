@@ -19,19 +19,24 @@
                         <a aria-current="page" class="nav-link active" href="#">Home</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav d-flex">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/employees?lang=en}" th:text="#{english}">English</a>
+                <ul class="navbar-nav d-flex" th:switch="#{lang}">
+                    <li class="nav-item" th:case="#{english}">
+                        <a th:href="@{/employees?lang=vn}">
+                            <img th:src="@{src/main/images/en.png}"/>
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/employees?lang=vn}" th:text="#{vietnam}">Vietnamese</a>
+                    <li class="nav-item" th:case="#{vietnam}">
+                        <a th:href="@{/employees?lang=en}">
+                            <img th:src="@{src/main/images/en.png}"/>
+                        </a>
                     </li>
                 </ul>
                 <form action="#" class="d-flex" method="post" th:action="@{/employees/search}"
                       th:object="${searchRequest}">
-                    <input aria-label="Search" class="form-control me-2" th:placeholder="#{look_up}" th:field="*{keyword}"
+                    <input aria-label="Search" class="form-control me-2" th:field="*{keyword}"
+                           th:placeholder="#{look_up}"
                            type="search">
-                    <button class="btn btn-outline-success" type="submit" th:text="#{search}">Search</button>
+                    <button class="btn btn-outline-success" th:text="#{search}" type="submit">Search</button>
                 </form>
                 <!--                <button class="btn btn-outline-success add-btn" >Add</button>-->
                 <a class="btn btn-outline-success add-btn" th:href="@{/employees/add}" th:text="#{add}">Add</a>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo-annotation" />
+        <module name="readcsv" />
+        <module name="car-dealer" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="car-dealer" target="11" />
+      <module name="demo-annotation" target="11" />
+      <module name="readcsv" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="car-dealer" options="-parameters" />
+      <module name="demo-annotation" options="-parameters" />
+      <module name="readcsv" options="-parameters" />
+    </option>
+  </component>
+</project>
