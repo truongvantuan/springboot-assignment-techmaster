@@ -19,18 +19,6 @@
                         <a aria-current="page" class="nav-link active" href="#">Home</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav d-flex" th:switch="#{lang}">
-                    <li class="nav-item" th:case="#{english}">
-                        <a th:href="@{/employees?lang=vn}">
-                            <img th:src="@{src/main/images/en.png}"/>
-                        </a>
-                    </li>
-                    <li class="nav-item" th:case="#{vietnam}">
-                        <a th:href="@{/employees?lang=en}">
-                            <img th:src="@{src/main/images/en.png}"/>
-                        </a>
-                    </li>
-                </ul>
                 <form action="#" class="d-flex" method="post" th:action="@{/employees/search}"
                       th:object="${searchRequest}">
                     <input aria-label="Search" class="form-control me-2" th:field="*{keyword}"
@@ -38,8 +26,23 @@
                            type="search">
                     <button class="btn btn-outline-success" th:text="#{search}" type="submit">Search</button>
                 </form>
-                <!--                <button class="btn btn-outline-success add-btn" >Add</button>-->
                 <a class="btn btn-outline-success add-btn" th:href="@{/employees/add}" th:text="#{add}">Add</a>
+
+                <!--                 Nút thay đổi ngôn ngữ-->
+                <ul class="navbar-nav d-flex lang-flag" th:switch="#{lang}">
+                    <li class="nav-item" th:case="#{english}">
+                        <a th:href="@{/employees?lang=vn}">
+                            <img th:src="@{'../images/' + 'VN.png'}"/>
+                        </a>
+                    </li>
+                    <li class="nav-item" th:case="#{vietnam}">
+                        <a th:href="@{/employees?lang=en}">
+                            <img th:src="@{'../images/' + 'EN.png'}"/>
+                        </a>
+                    </li>
+                </ul>
+                <!--                End language flag-->
+
             </div>
         </div>
     </nav>

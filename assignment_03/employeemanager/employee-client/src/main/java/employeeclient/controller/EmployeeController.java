@@ -24,6 +24,7 @@ public class EmployeeController {
 
     /**
      * Lấy toàn bộ danh sách employee.
+     *
      * @param model
      * @return đổ dữ liệu vào template employee-list
      */
@@ -39,6 +40,7 @@ public class EmployeeController {
 
     /**
      * Lấy về thông tin employee theo id truyền vào từ url path
+     *
      * @param employeeId map từ id
      * @param model
      * @return
