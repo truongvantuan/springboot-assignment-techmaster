@@ -6,7 +6,7 @@
         
     - Kết quả:
         
-        - ![ghost-network](images/ghost-network.png)
+        - ![ghost-network](pictures/ghost-network.png)
 - Tạo volume
     
     - ```bash
@@ -15,7 +15,7 @@
         
     - Kết quả:
         
-        - ![ghost-volume](images/ghost-volume.png)
+        - ![ghost-volume](pictures/ghost-volume.png)
 - Tạo container từ mysql:5.7
     
     - ```bash
@@ -29,7 +29,7 @@
         
     - Kết quả:
         
-        - ![db-mysql](images/db-mysql.png)
+        - ![db-mysql](pictures/db-mysql.png)
 - Tạo container từ ghost:alpine
     
     - ```bash
@@ -46,6 +46,6 @@
         
     - Kết quả:
         
-        - ![ghost-alpine](images/ghost-alpine.png)
+        - ![ghost-alpine](pictures/ghost-alpine.png)
 - Ứng dụng chạy tại http://localhost:80
-    - ![blog](images/blog.png)
+    - ![blog](pictures/blog.png)

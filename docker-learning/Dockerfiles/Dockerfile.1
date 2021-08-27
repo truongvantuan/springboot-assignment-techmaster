@@ -1,0 +1,5 @@
+# Launch Stage
+FROM openjdk:8-alpine
+ARG JAVA_FILE=target/*.jar
+COPY ${JAVA_FILE} .
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "websocket-demo-0.0.1-SNAPSHOT.jar"]

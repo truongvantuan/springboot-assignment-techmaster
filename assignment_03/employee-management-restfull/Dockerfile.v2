@@ -1,0 +1,12 @@
+# Build Stage
+FROM maven:eclipse-temurin AS builder
+COPY . .
+RUN mvn clean package -Dmaven.test.skip
+
+# Run Stage
+FROM adoptopenjdk/openjdk11:alpine
+RUN mkdir /root/springboot-app
+WORKDIR /root/springboot-app
+ARG APP_PATH=/root/springboot-app
+COPY --from=builder target/*jar ${APP_PATH}/app.jar
+ENTRYPOINT ["java", "-jar", "/root/springboot-app/app.jar"]
