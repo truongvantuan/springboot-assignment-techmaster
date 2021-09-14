@@ -2,6 +2,7 @@ package employeemanagement.repository;
 
 
 import employeemanagement.domain.Employee;
+import org.junit.jupiter.api.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +15,8 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(EmployeeRepository repository) {
+    @Order(1)
+    CommandLineRunner initDatabase(EmployeeRepository repository) { // inject repository như là tham số
         return args -> {
             log.info("Loading Database: "
                     + repository.save(new Employee("Tuan", "Truong",
