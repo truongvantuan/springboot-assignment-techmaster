@@ -22,7 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Validated
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/employees")
 public class EmployeeController {
 
     private EmployeeService service;
@@ -35,7 +35,7 @@ public class EmployeeController {
     }
 
     @Operation(summary = "Lấy tất cả employee")
-    @GetMapping(value = "/employees")
+    @GetMapping
     public CollectionModel<EntityModel<Employee>> getAll() {
         List<EntityModel<Employee>> employees = service.getAllEmployee()
                 .stream()
@@ -46,7 +46,7 @@ public class EmployeeController {
     }
 
     @Operation(summary = "Lấy về employee theo id")
-    @GetMapping(value = "/employees/{id}")
+    @GetMapping(value = "/{id}")
     public EntityModel<Employee> getOne(@PathVariable("id")
                                         @Min(value = 1)
                                         @Max(value = 100) Long employeeId) {
@@ -54,7 +54,7 @@ public class EmployeeController {
         return assembler.toModel(employee);
     }
 
-    @GetMapping(value = "/employees/search")
+    @GetMapping(value = "/search")
     public CollectionModel<EntityModel<Employee>> search(@RequestParam(name = "email", required = true)
                                                                  String keyword) {
         List<EntityModel<Employee>> employees = service.findByEmail(keyword).stream()
@@ -75,18 +75,18 @@ public class EmployeeController {
      * }
      */
 
-    @PostMapping(value = "employees")
+    @PostMapping()
     public EntityModel<Employee> newEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
         var employee = service.saveEmployee(employeeDto);
         return assembler.toModel(employee);
     }
 
-    @DeleteMapping(value = "/employees/{id}")
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable(name = "id") Long employeeId) {
         service.deleteEmployee(employeeId);
     }
 
-    @PutMapping(value = "/employees/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@RequestBody EmployeeDto employeeDto, @PathVariable long id) {
         service.updateEmployee(employeeDto, id);
         return ResponseEntity.ok().build();
